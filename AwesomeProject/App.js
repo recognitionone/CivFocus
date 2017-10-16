@@ -12,6 +12,12 @@ export default class App extends React.Component {
           color="#841584"
           accessibilityLabel="Learn more about this purple button"
         />
+        <Button          
+          title="In Progress"
+          color="#841584"
+          accessibilityLabel="Learn more about this purple button"
+        />
+
       </View>
     );
   }
