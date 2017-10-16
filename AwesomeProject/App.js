@@ -13,7 +13,7 @@ export default class App extends React.Component {
           accessibilityLabel="Learn more about this purple button"
         />
         <Button          
-          title="In Progress"
+          title="In Progress But not really"
           color="#841584"
           accessibilityLabel="Learn more about this purple button"
         />
