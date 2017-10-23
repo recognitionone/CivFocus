@@ -4,7 +4,6 @@ import { StyleSheet, Text, View, Button } from 'react-native';
 import Expo from 'expo';
 import { StackNavigator } from 'react-navigation';
 
-
 import ActionButton from 'react-native-action-button';
 import Icon from 'react-native-vector-icons/Ionicons';
 
@@ -12,10 +11,10 @@ import MyImg from './components/MyImg';
 import MyCity from './components/MyCity';
 import MyStats from './components/MyStats';
 
+
 class FocusRoomScreen extends React.Component {
   static navigationOptions = {
     title: 'Welcome to Focus Room',
-    
   }
   render() {
     const { navigate } = this.props.navigation;
@@ -24,13 +23,7 @@ class FocusRoomScreen extends React.Component {
 
           <View style={{flex: 0.5, backgroundColor: 'powderblue', flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center',}}>
             <Text>
-              Points
-            </Text>
-            <Text>
-              Points
-            </Text>
-            <Text>
-              Points
+              Some text
             </Text>
           </View>
 
@@ -72,31 +65,37 @@ class CityViewScreen extends React.Component {
   static navigationOptions = {
     title: 'Welcome to CityView',
   }
+  
   render() {
     const { navigate } = this.props.navigation;
     return(
-      <View>
-      <Button
-      title="Go to FocusRoom"
-      onPress={() => navigate('FocusRoom', {name: 'FocusRoom'})} />
-      <Button
-      title="Go to Adam Smith Profile"
-      onPress={() => navigate('Stats', {name: 'Stats'})} />
-      <MyCity />
+      <View style={styles.container}>
+        <View style={{flex: 8}}>
+          <MyCity />
+        </View>
+
+        <View style={{flex: 1}}>
+          <Button title="Back" onPress={() => navigate('FocusRoom', {name: 'FocusRoom'})} style={styles.backButton}>Back</Button>
+        </View>
       </View>);
   }
 }
 
 class StatsScreen extends React.Component {
   static navigationOptions = {
-    title: 'Welcome Stats',
+    title: 'Welcome to Stats',
   }
+  
   render() {
     const { navigate } = this.props.navigation;
     return(
-      <View>
-     
-      <MyStats />
+      <View style={styles.container}>
+        <View style={{flex: 8}}>
+          <MyStats />
+        </View>
+        <View style={{flex: 1}}>
+          <Button title="Back" onPress={() => navigate('FocusRoom', {name: 'FocusRoom'})} style={styles.backButton}>Back</Button>
+        </View>
       </View>);
   }
 }
@@ -104,7 +103,8 @@ class StatsScreen extends React.Component {
 const MyApp = StackNavigator({
   FocusRoom: { screen: FocusRoomScreen },
   CityView: { screen: CityViewScreen },
-  Stats: { screen: StatsScreen }
+  Stats: { screen: StatsScreen },
+  
 }, {
   navigationOptions: {
     headerStyle: {
@@ -134,6 +134,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center',
   },
   actionButtonIcon: {
+    fontSize: 20,
+    height: 22,
+    color: 'white',
+  },
+    backButton: {
     fontSize: 20,
     height: 22,
     color: 'white',
