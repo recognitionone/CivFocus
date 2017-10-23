@@ -6,7 +6,7 @@ const styles = StyleSheet.create({
       backgroundColor: '#fff',
       alignItems: 'center',
       justifyContent: 'center',
-      width:30
+      
     },
     btn:{
         width:20,
@@ -17,21 +17,31 @@ const styles = StyleSheet.create({
   });
 
 export default class Drawer extends Component{
+    _handleButtonPress = () => {
+        Alert.alert(
+          'Button pressed!',
+          'You did it!',
+        );
+      };
+
     render(){
         return <View style={styles.drawer}>
                     <Button
                     title="Learn More"
                     color="#841584"
+                    onPress={this._handleButtonPress}
                     accessibilityLabel="Learn more about this purple button"
                     />
                     <Button
                     title="Learn More"
                     color="#841584"
+                    onPress={this._handleButtonPress}
                     accessibilityLabel="Learn more about this purple button"
                     />
                     <Button
                     title="Learn More"
                     color="red"
+                    onPress={this._handleButtonPress}
                     accessibilityLabel="Learn more about this purple button"
                     />
                 </View>
