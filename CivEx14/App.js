@@ -15,7 +15,8 @@ const btnData={
   btn1:{
     title:"Hello",
     btnColor:"#fff",
-    id:1
+    id:1,
+    name:'Hello'
   },
   btn2:{
     title:"Helo",
@@ -93,7 +94,7 @@ class FocusRoomScreen extends React.Component {
           alignItems: 'center',}} >
           <Button title="Start" onPress={() => console.log("start tapped!")}>Start</Button>
           </View>
-          <CustomeButton {...btnData.btn1}/>
+          <CustomeButton {...btnData.btn1} onBtnPress={this.onBtnPress}/>
 
           <ActionButton buttonColor="rgba(231,76,60,1)">
             {
