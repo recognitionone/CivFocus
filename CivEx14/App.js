@@ -93,10 +93,11 @@ class FocusRoomScreen extends React.Component {
           alignItems: 'center',}} >
           <Button title="Start" onPress={() => console.log("start tapped!")}>Start</Button>
           </View>
+          <CustomeButton {...btnData.btn1}/>
 
           <ActionButton buttonColor="rgba(231,76,60,1)">
             {
-              /*Object.keys(btnData).map((key)=> <CustomeButton {...btnData[key]} onBtnPress={this.onBtnPress}/>)*/
+              Object.keys(btnData).map((key)=> <CustomeButton key={key} {...btnData[key]} onBtnPress={this.onBtnPress}/>)
             }
           </ActionButton>
 
