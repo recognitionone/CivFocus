@@ -11,10 +11,57 @@ import MyImg from './components/MyImg';
 import MyCity from './components/MyCity';
 import MyStats from './components/MyStats';
 
+const btnData={
+  btn1:{
+    title:"Hello",
+    btnColor:"#fff",
+    id:1
+  },
+  btn2:{
+    title:"Helo",
+    btnColor:"#fff",
+    id:2
+  },
+  btn3:{
+    title:"Hlo",
+    btnColor:"#fff",
+    id:3
+  }
+}
+
+const btnData1=[{
+  title:"Hello",
+  btnColor:"#fff",
+  id:1
+},{
+  title:"Hello",
+  btnColor:"#fff",
+  id:1
+}]
+
+class CustomeButton extends React.Component{
+  render(){
+      const {btnColor,title,id,name,onBtnPress}={...this.props}
+      return <ActionButton.Item buttonColor={btnColor} title={title} onPress={() => {onBtnPress(id,name)}}>
+              <Icon name="ios-arrow-up" style={styles.actionButtonIcon} />
+            </ActionButton.Item>
+  }
+}
 
 class FocusRoomScreen extends React.Component {
+  constructor(){
+    super();
+    this.onBtnPress=this.onBtnPress.bind(this)
+  }
   static navigationOptions = {
     title: 'Welcome to Focus Room',
+  }
+
+
+
+  onBtnPress(id,name){
+    alert("Wow")
+    navigate(id, {name:name})
   }
   render() {
     const { navigate } = this.props.navigation;
@@ -45,15 +92,9 @@ class FocusRoomScreen extends React.Component {
           </View>
 
           <ActionButton buttonColor="rgba(231,76,60,1)">
-            <ActionButton.Item buttonColor='#9b59b6' title="New Task" onPress={() => console.log("notes tapped!")}>
-              <Icon name="ios-arrow-up" style={styles.actionButtonIcon} />
-            </ActionButton.Item>
-            <ActionButton.Item buttonColor='#3498db' title="CityView" onPress={() => navigate('CityView', {name: 'CityView'})}>
-              <Icon name="ios-arrow-up" style={styles.actionButtonIcon} />
-            </ActionButton.Item>
-            <ActionButton.Item buttonColor='#1abc9c' title="Stats" onPress={() => navigate('Stats', {name: 'Stats'})}>
-              <Icon name="ios-arrow-up" style={styles.actionButtonIcon} />
-            </ActionButton.Item>
+            {
+              Object.keys(btnData).map((key)=> <CustomeButton {...btnData[key]} onBtnPress={this.onBtnPress}/>)
+            }
           </ActionButton>
 
       </View>
