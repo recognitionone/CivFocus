@@ -41,6 +41,7 @@ const btnData1=[{
 
 class CustomeButton extends React.Component{
   render(){
+      debugger
       const {btnColor,title,id,name,onBtnPress}={...this.props}
       return <ActionButton.Item buttonColor={btnColor} title={title} onPress={() => {onBtnPress(id,name)}}>
               <Icon name="ios-arrow-up" style={styles.actionButtonIcon} />
@@ -60,10 +61,12 @@ class FocusRoomScreen extends React.Component {
 
 
   onBtnPress(id,name){
+
     alert("Wow")
     navigate(id, {name:name})
   }
   render() {
+    debugger
     const { navigate } = this.props.navigation;
     return(
         <View style={{flex: 1}}>
@@ -93,7 +96,7 @@ class FocusRoomScreen extends React.Component {
 
           <ActionButton buttonColor="rgba(231,76,60,1)">
             {
-              Object.keys(btnData).map((key)=> <CustomeButton {...btnData[key]} onBtnPress={this.onBtnPress}/>)
+              /*Object.keys(btnData).map((key)=> <CustomeButton {...btnData[key]} onBtnPress={this.onBtnPress}/>)*/
             }
           </ActionButton>
 
