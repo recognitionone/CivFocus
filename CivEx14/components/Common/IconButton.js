@@ -22,6 +22,10 @@ const iconList=[{
     name:'mood',
     color:'#01a699',
     id:'Stats'
+},{
+    name:'mood',
+    color:'#01a699',
+    id:'Images'
 },
 // {
 //     name:'whatshot',

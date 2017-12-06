@@ -10,6 +10,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import FocusRoomScreen from './components/FocusRoom'
 import CityViewScreen from './components/CityView'
 import StatsScreen from './components/Stats'
+import ImagesScreen from './components/Images'
 
 const MyApp = StackNavigator({
   FocusRoom: {  
@@ -25,6 +26,9 @@ const MyApp = StackNavigator({
   Stats: { screen: StatsScreen,navigationOptions:{ 
     headerTitle: 'Stats'
   } },
+  Images: { screen: ImagesScreen,navigationOptions:{ 
+    headerTitle: 'Images'
+  } },
   
 }, {
   navigationOptions: {
@@ -37,6 +41,7 @@ const MyApp = StackNavigator({
 
 export default class App extends React.Component {
   render() {
+    var name = "Tyler";
     return <MyApp />;
   }
 }

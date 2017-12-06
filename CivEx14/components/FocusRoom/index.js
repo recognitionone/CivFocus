@@ -9,13 +9,15 @@ export default class FocusRoom extends Component{
     static navigationOptions = {
         title: 'Welcome',
       };
+    
 
     render(){
         const { navigate } = this.props.navigation;
+        
         return( <View style={styles.wrapper}>
                   <IconDropDown navigate={navigate} />
                   <View style={styles.content}>
-                      <Text style={styles.textStyle}>Focus</Text>
+                      <Text style={styles.textStyle}>Time to focus</Text>
                       <Timer/>
                   </View>
                 </View>)
