@@ -35,13 +35,99 @@ class Greetings extends Component {
   }
 }
 
+class Blink extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {score: true};
+
+    setInterval(() => {
+      this.setState(prevState => {
+        return {
+          score: !prevState.score
+        }
+      })
+    }, 1000);
+  }
+
+  render() {
+    // let display = this.state.showText ? this.props.text : 'dupa';
+    let display = this.state.score ? this.props.plext : 'o w dupę';
+    return (
+      <View>
+        <Text>{display}!</Text>
+      </View>  
+    );
+  }
+}
+
+class Clock extends Component {
+  constructor(props) {
+    super(props);
+    this.state={leClock: new Date()}
+
+    
+      setInterval(() => this.setState({
+        leClock: new Date()
+      }), 1000);
+    
+  }
+
+  render() {
+    return(<Text>{this.state.leClock.toLocaleTimeString()}</Text>);
+  }
+}
+
 export default class ImagesScreen extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {text: 'oo'};
+    this.state = {
+      text: 'oo', 
+      pftext: 0,
+    
+    };
   }
 
+  // componentDidMount() {
+  //   this.timerID = setInterval(
+  //     () => this.tick(),
+  //     1000
+  //   );
+  // }
+
+  // componentDidMount() {
+  //   this.timerID = setInterval(() => this.setState({
+  //       pftext: this.state.pftext+1
+  //     }), 1000);
+  // }
+
+  componentDidMount() {
+    setInterval(() => this.setState({
+        pftext: this.state.pftext+1
+      }), 1000);
+  }
+
+ 
+
+  // setInterval(() => {
+  //   this.setState(prevState => {
+  //     return {
+  //       score: !prevState.score
+  //     }
+  //   })
+  // }, 1000);
+
+  // componentWillUnmount() {
+  //   clearInterval(this.timerID);
+  // } 
+
+  // tick() {
+  //   this.setState({
+  //     pftext: this.state.pftext+1
+  //   });
+  // }
+
+  // leClock: new Date()
   render(){
     return(
       <View style={{
@@ -58,11 +144,13 @@ export default class ImagesScreen extends Component {
         />
         
         <Text style={{padding: 10, fontSize: 42}}>
-          {this.state.text.split(' ').map((word) => word && 'O').join('o')}
+          {this.state.text.split(' ').map((word) => word && ' ').join('o')}
           <Greetings name={this.state.text}/>
         </Text>
         
-        <Text>No hejhej</Text>
+        <Blink plext='Po co ci kapusta'/>
+        <Text>{this.state.pftext}</Text>
+        <Clock />
         
       </View>
     )
