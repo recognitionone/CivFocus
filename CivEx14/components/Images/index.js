@@ -65,15 +65,41 @@ class Clock extends Component {
     super(props);
     this.state={leClock: new Date()}
 
-    
       setInterval(() => this.setState({
         leClock: new Date()
       }), 1000);
-    
   }
 
   render() {
     return(<Text>{this.state.leClock.toLocaleTimeString()}</Text>);
+  }
+}
+
+class Counter extends Component {
+  constructor(props){
+    super(props);
+    this.state = {count: 5};
+    this.increment = this.increment.bind(this);
+    this.decrement = this.decrement.bind(this);
+  }
+
+  increment() {
+    const {count} = this.state;
+    this.setState({count: count + 1});
+  }
+
+  decrement() {
+    const {count} = this.state;
+    this.setState({count: count - 1});
+  }
+
+  render() {
+    const {count} = this.state;
+    return(<View  style={{alignItems:'center', margin:10}}>
+      <Text>{count}</Text>
+      <Button title="Decrement" onPress={this.decrement} style={{height:20}}>( - )</Button>
+      <Button title="Increment" onPress={this.increment}>( + )</Button>
+    </View>);
   }
 }
 
@@ -83,51 +109,15 @@ export default class ImagesScreen extends Component {
     super(props);
     this.state = {
       text: 'oo', 
-      pftext: 0,
-    
+      pftext: 360,
     };
-  }
 
-  // componentDidMount() {
-  //   this.timerID = setInterval(
-  //     () => this.tick(),
-  //     1000
-  //   );
-  // }
-
-  // componentDidMount() {
-  //   this.timerID = setInterval(() => this.setState({
-  //       pftext: this.state.pftext+1
-  //     }), 1000);
-  // }
-
-  componentDidMount() {
     setInterval(() => this.setState({
-        pftext: this.state.pftext+1
-      }), 1000);
+      pftext: this.state.pftext-1
+    }), 1000);
+
   }
 
- 
-
-  // setInterval(() => {
-  //   this.setState(prevState => {
-  //     return {
-  //       score: !prevState.score
-  //     }
-  //   })
-  // }, 1000);
-
-  // componentWillUnmount() {
-  //   clearInterval(this.timerID);
-  // } 
-
-  // tick() {
-  //   this.setState({
-  //     pftext: this.state.pftext+1
-  //   });
-  // }
-
-  // leClock: new Date()
   render(){
     return(
       <View style={{
@@ -148,9 +138,10 @@ export default class ImagesScreen extends Component {
           <Greetings name={this.state.text}/>
         </Text>
         
-        <Blink plext='Po co ci kapusta'/>
+        {/* <Blink plext='Po co ci kapusta'/> */}
         <Text>{this.state.pftext}</Text>
-        <Clock />
+        {/* <Clock /> */}
+        <Counter />
         
       </View>
     )
