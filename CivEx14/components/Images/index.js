@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {View, Button, Text, TextInput} from 'react-native';
+import {View, Button, Text, TextInput, Slider} from 'react-native';
 
 // import ActionButton from 'react-native-circular-action-menu';
 // import Icon from 'react-native-vector-icons/Ionicons';
@@ -81,6 +81,10 @@ class Counter extends Component {
     this.state = {count: 5};
     this.increment = this.increment.bind(this);
     this.decrement = this.decrement.bind(this);
+
+    setInterval(() => this.setState({
+      count: this.state.count-1
+    }), 1000);
   }
 
   increment() {
@@ -97,9 +101,26 @@ class Counter extends Component {
     const {count} = this.state;
     return(<View  style={{alignItems:'center', margin:10}}>
       <Text>{count}</Text>
-      <Button title="Decrement" onPress={this.decrement} style={{height:20}}>( - )</Button>
+      <Button title="Decrement" onPress={this.decrement}>( - )</Button>
       <Button title="Increment" onPress={this.increment}>( + )</Button>
     </View>);
+  }
+}
+
+class MySlider extends Component {
+  constructor(props) {
+    super(props);
+    this.state={things:10};
+  }
+  render() {
+    return(<Slider 
+      style={{ width: 300 }}
+      step={10}
+      minimumValue={0}
+      maximumValue={300}
+      value={this.state.things}
+      
+    />)
   }
 }
 
@@ -142,6 +163,7 @@ export default class ImagesScreen extends Component {
         <Text>{this.state.pftext}</Text>
         {/* <Clock /> */}
         <Counter />
+        <MySlider />
         
       </View>
     )
