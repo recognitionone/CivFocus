@@ -112,15 +112,34 @@ class MySlider extends Component {
     super(props);
     this.state={things:10};
   }
+
+  // start() {
+  //   const {count} = this.state;
+  //   this.setState({count: count + 1});
+  // }
+
+  // stop() {
+  //   const {count} = this.state;
+  //   this.setState({count: count - 1});
+  // }
+
+
   render() {
-    return(<Slider 
-      style={{ width: 300 }}
-      step={10}
-      minimumValue={0}
-      maximumValue={300}
-      value={this.state.things}
-      
-    />)
+   
+    return(
+    <View>
+      <Text>{this.state.things}</Text>
+      <Slider 
+        style={{ width: 300 }}
+        step={10}
+        minimumValue={0}
+        maximumValue={300}
+        value={this.state.things}
+        onValueChange={val => this.setState({ things: val })}  
+      />
+      {/* <Button title="Start" onPress={this.start}>START</Button>
+      <Button title="Stop" onPress={this.stop}>STOP</Button> */}
+    </View>
   }
 }
 
@@ -165,9 +184,15 @@ export default class ImagesScreen extends Component {
         {/* <Clock /> */}
         <Counter />
         <View style={{borderBottomColor: '#a0a0a0', borderBottomWidth: 1}}/>
-        <Text>Some text</Text>
-        <MySlider />
-        
+        <View style={{flexDirection: 'row', 
+          alignContent:'space-between', 
+          margin: 30, 
+          justifyContent: 'space-between'}}>
+          <Text>Some text</Text>
+          <MySlider />
+        </View>
+        <View style={{borderBottomColor: '#a0a0a0', borderBottomWidth: 1}}/>
+
       </View>
     )
   }
