@@ -50,7 +50,6 @@ class Blink extends Component {
   }
 
   render() {
-    // let display = this.state.showText ? this.props.text : 'dupa';
     let display = this.state.score ? this.props.plext : 'o w dupę';
     return (
       <View>
@@ -99,7 +98,8 @@ class Counter extends Component {
 
   render() {
     const {count} = this.state;
-    return(<View  style={{alignItems:'center', margin:10}}>
+    return(<View  style={{flexDirection: 'row', alignContent:'space-between', 
+    margin: 30, justifyContent: 'space-between'}}>
       <Text>{count}</Text>
       <Button title="Decrement" onPress={this.decrement}>( - )</Button>
       <Button title="Increment" onPress={this.increment}>( + )</Button>
@@ -143,7 +143,7 @@ export default class ImagesScreen extends Component {
     return(
       <View style={{
         flex:1, 
-        backgroundColor: '#faf345', 
+        backgroundColor: '#f4f4f4', 
         padding: 10, 
         }}>
 
@@ -159,10 +159,13 @@ export default class ImagesScreen extends Component {
           <Greetings name={this.state.text}/>
         </Text>
         
+        <View style={{borderBottomColor: '#a0a0a0', borderBottomWidth: 1}}/>
         {/* <Blink plext='Po co ci kapusta'/> */}
-        <Text>{this.state.pftext}</Text>
+        <Text>This is my number that goes down: {this.state.pftext}</Text>
         {/* <Clock /> */}
         <Counter />
+        <View style={{borderBottomColor: '#a0a0a0', borderBottomWidth: 1}}/>
+        <Text>Some text</Text>
         <MySlider />
         
       </View>
