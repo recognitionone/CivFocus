@@ -140,6 +140,7 @@ class MySlider extends Component {
       {/* <Button title="Start" onPress={this.start}>START</Button>
       <Button title="Stop" onPress={this.stop}>STOP</Button> */}
     </View>
+    )
   }
 }
 
