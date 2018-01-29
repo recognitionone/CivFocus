@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {View,Text,Button,TouchableOpacity, StyleSheet} from 'react-native'
 import { Icon } from 'react-native-elements'
 
-export const IconButton=({name,color,id,onPress,...props})=>{
+export const IconButton=({name, type, color,id,onPress,...props})=>{
     return <TouchableOpacity
     style={styles.iconBtn}
     onPressIn={()=>{onPress(id)}}
@@ -19,19 +19,20 @@ const iconList=[{
     color:'#01a699',
     id:'CityView'
 },{
-    name:'mood',
+     name:'rowing',
+    color:'#01a699',
+    id:'Todolist'
+},{
+    name:'g-translate',
+    
     color:'#01a699',
     id:'Stats'
 },{
     name:'mood',
-    color:'#01a699',
+    
+    color:'#ff234E',
     id:'Images'
 },
-// {
-//     name:'whatshot',
-//     color:'#01a699',
-//     id:''
-// }
 ]
 
 export const IconButtonList=({onPress})=>(

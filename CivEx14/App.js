@@ -11,6 +11,8 @@ import FocusRoomScreen from './components/FocusRoom'
 import CityViewScreen from './components/CityView'
 import StatsScreen from './components/Stats'
 import ImagesScreen from './components/Images'
+import TodolistScreen from './components/Todolist'
+	   TodolistScreen	
 
 const MyApp = StackNavigator({
   FocusRoom: {  
@@ -23,6 +25,10 @@ const MyApp = StackNavigator({
     navigationOptions:{ 
       headerTitle: 'City View'
     } },
+  Todolist: { screen: TodolistScreen,
+  	navigationOptions: {
+  		headerTitle: 'Todolist'
+  	} },
   Stats: { screen: StatsScreen,navigationOptions:{ 
     headerTitle: 'Stats'
   } },
@@ -41,7 +47,6 @@ const MyApp = StackNavigator({
 
 export default class App extends React.Component {
   render() {
-    var name = "Tyler";
     return <MyApp />;
   }
 }
