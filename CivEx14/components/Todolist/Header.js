@@ -10,12 +10,13 @@ export default class Header extends Component {
 				</TouchableOpacity>
 				<TextInput 
 					value={this.props.value}
-					onChangeText={this.props.onChange}
-					onSubmitEditing={this.props.onAddItem}
+					// onChangeText={this.props.onChange}
+					// onSubmitEditing={this.props.onAddItem}
+
 					placeholder='this is useless placeholder'
 					blurOnSubmit={false}
-					returnKeyType= { "done" }
-					returnKeyLabel="done"
+					returnKeyType="done"
+					
 					underlineColorAndroid="#FFFFFF"
 					style={styles.input}
 				/>
