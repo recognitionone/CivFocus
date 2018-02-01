@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {View, Text, StyleSheet, TouchableOpacity, TextInput, ListView, Keyboard  } from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity, Button, TextInput } from 'react-native';
 import Header from '../Todolist/Header'
 import Footer from '../Todolist/Footer'
 
@@ -12,11 +12,13 @@ export default class TodolistScreen extends Component {
       value: "poooooo",
       items: [],
       count: 0,
-      pizza: ''
+      pizza: '',
+      searchText: '122323223'
     }
-    this.handleAddItem = this.handleAddItem.bind(this);
+    // this.handleAddItem = this.handleAddItem.bind(this);
     this.handleToggleAllComplete = this.handleToggleAllComplete.bind(this);
     this.onPress = this.onPress.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
   }
 
   // onPress = () => {
@@ -30,22 +32,43 @@ export default class TodolistScreen extends Component {
     })
   }
 
-  handleAddItem() {
-    if(!this.state.value) return;
+  onSubmit(stuff) {
+    // console.table({stuff});
+    if(!{stuff}) return;
     const newItems = [
       ...this.state.items,
       {
         key: Date.now(),
-        text: this.state.value,
+        text: {stuff},
         complete: false
       }
     ]
-    this.setState= ({
+    this.setState({
       items: newItems,
-      value: "dupę"
+      searchText: ''
+      
     })
+    console.table({newItems});
     console.table(newItems);
+    console.log(newItems);
   }
+
+  // handleAddItem() {
+  //   if(!this.state.value) return;
+  //   const newItems = [
+  //     ...this.state.items,
+  //     {
+  //       key: Date.now(),
+  //       text: this.state.value,
+  //       complete: false
+  //     }
+  //   ]
+  //   this.setState= ({
+  //     items: newItems,
+  //     value: "dupę"
+  //   })
+  //   console.table(newItems);
+  // }
 
   handleToggleAllComplete() {
     const complete = !this.state.allComplete;
@@ -71,34 +94,42 @@ export default class TodolistScreen extends Component {
           // onToggleAllComplete={this.handleToggleAllComplete}
         />
         <View style={styles.content}>
-          <TouchableOpacity
-            // onPress={this.onPress}
-            onPress={this.handleAddItem}
-          >
-            <Text> Submit </Text>
-          </TouchableOpacity>
-          <Text>
-            { this.state.count !== 0 ? this.state.count: "hello"}
-          </Text>
-          <Text>Here will be the content or jeez</Text>
 
-          <View style={{padding: 10}}>
-            <TextInput
-              style={{height: 40}}
-              placeholder="Type here to translate!"
-              onChangeText={(pizza) => this.setState({pizza})}
-              
-            />
-            <Text style={{padding: 10, fontSize: 42}}>
-              {this.state.pizza.split(' ').map((word) => word && '0_0').join(' ')}
-            </Text>
-            <Text>
-              {
-                
-                
-              }              
-            </Text>
+          <View style={{
+            flexDirection:'row', 
+            width: window.width, 
+            margin: 10, padding:4, 
+            alignItems:'center', 
+            justifyContent:'center', 
+            borderWidth:4, 
+            borderColor:'#888', 
+            borderRadius:10, 
+            backgroundColor:'#fff'}}
+            >
+            <View style={{flex:4}}>
+              <TextInput
+                  // onChangeText = {(textEntry) => {this.setState({searchText: textEntry})}}
+                  style={{backgroundColor:'transparent'}}
+                  // onSubmitEditing = {()=>{this.onSubmit(this.state.searchText)}}
+                  onFocus = {() => {console.log('onFocus')}}
+                  onBlur = {() => {console.log('onBlur')}}
+                  onChange = {() => {console.log('onChange')}}
+                  onChangeText = {(text) => {
+                    this.setState({searchText: text})
+                    console.log('onChangeText')}}
+                  value = {this.state.searchText}
+
+                />
+            </View>
+            <View style={{flex:1}}>
+              <TouchableOpacity onPress={ () => this.onSubmit(this.state.searchText) }>
+                  <Text style={ { width: 50, height: 50 } } >Search</Text>
+              </TouchableOpacity>
+            </View>
           </View>
+
+
+          
         </View>
         <Footer />
       </View>
