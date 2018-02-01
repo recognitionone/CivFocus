@@ -87,9 +87,16 @@ export default class TodolistScreen extends Component {
               style={{height: 40}}
               placeholder="Type here to translate!"
               onChangeText={(pizza) => this.setState({pizza})}
+              
             />
             <Text style={{padding: 10, fontSize: 42}}>
               {this.state.pizza.split(' ').map((word) => word && '0_0').join(' ')}
+            </Text>
+            <Text>
+              {
+                
+                
+              }              
             </Text>
           </View>
         </View>
