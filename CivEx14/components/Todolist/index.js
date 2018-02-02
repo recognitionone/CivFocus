@@ -11,14 +11,23 @@ export default class TodolistScreen extends Component {
       allComplete: false,
       value: "poooooo",
       items: [],
+      items2: [],
       count: 0,
       pizza: '',
-      searchText: '122323223'
+      searchText: 'default input',
+      searchText2: '',
+      // name: 'name input',
+      // stuffandthings: '',
+      // username: '',
+      // password: ''
     }
     // this.handleAddItem = this.handleAddItem.bind(this);
-    this.handleToggleAllComplete = this.handleToggleAllComplete.bind(this);
+    // this.handleToggleAllComplete = this.handleToggleAllComplete.bind(this);
     this.onPress = this.onPress.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+    this.onPressDone = this.onPressDone.bind(this);
+    // this.handleChange = this.handleChange.bind(this);
   }
 
   // onPress = () => {
@@ -52,6 +61,42 @@ export default class TodolistScreen extends Component {
     console.table(newItems);
     console.log(newItems);
   }
+  onSubmit2(stuff2) {
+    // console.table({stuff});
+    if(!{stuff2}) return;
+    const newItems2 = [
+      ...this.state.items2,
+      {
+        key: Date.now(),
+        text: {stuff2},
+        isComplete: false
+      }
+    ]
+    this.setState({
+      items2: newItems2,
+      searchText2: ''
+      
+    })
+    console.table({newItems2});
+    console.table(newItems2);
+    console.log(newItems2);
+  }
+
+  onPressDone(stuff3) {
+    const isComplete = !this.state.allComplete;
+    const newItems2 = this.state.items2.map((item) => ({
+      ...item,
+      isComplete
+    }))
+    
+    this.setState({
+      items2: newItems2,
+      allComplete: isComplete
+    })
+
+    console.table({newItems2})
+  }
+
 
   // handleAddItem() {
   //   if(!this.state.value) return;
@@ -70,19 +115,22 @@ export default class TodolistScreen extends Component {
   //   console.table(newItems);
   // }
 
-  handleToggleAllComplete() {
-    const complete = !this.state.allComplete;
-    const newItems = this.state.items.map((item) => ({
-      ...item,
-      complete
-    }))
+  // handleToggleAllComplete() {
+  //   const complete = !this.state.allComplete;
+  //   const newItems = this.state.items.map((item) => ({
+  //     ...item,
+  //     complete
+  //   }))
     
-    this.setState({
-      items: newItems,
-      allComplete: complete
-    })
-    console.table(this.state.value);
-  }
+  //   this.setState({
+  //     items: newItems,
+  //     allComplete: complete
+  //   })
+  //   console.table(this.state.value);
+  // }
+
+
+
 
   render(){
     return(
@@ -95,25 +143,16 @@ export default class TodolistScreen extends Component {
         />
         <View style={styles.content}>
 
-          <View style={{
-            flexDirection:'row', 
-            width: window.width, 
-            margin: 10, padding:4, 
-            alignItems:'center', 
-            justifyContent:'center', 
-            borderWidth:4, 
-            borderColor:'#888', 
-            borderRadius:10, 
-            backgroundColor:'#fff'}}
+          <View style={styles.textinputbox}
             >
             <View style={{flex:4}}>
               <TextInput
                   // onChangeText = {(textEntry) => {this.setState({searchText: textEntry})}}
                   style={{backgroundColor:'transparent'}}
                   // onSubmitEditing = {()=>{this.onSubmit(this.state.searchText)}}
-                  onFocus = {() => {console.log('onFocus')}}
-                  onBlur = {() => {console.log('onBlur')}}
-                  onChange = {() => {console.log('onChange')}}
+                  // onFocus = {() => {console.log('onFocus')}}
+                  // onBlur = {() => {console.log('onBlur')}}
+                  // onChange = {() => {console.log('onChange')}}
                   onChangeText = {(text) => {
                     this.setState({searchText: text})
                     console.log('onChangeText')}}
@@ -127,8 +166,39 @@ export default class TodolistScreen extends Component {
               </TouchableOpacity>
             </View>
           </View>
+          
+          <View style={styles.textinputbox}
+            >
+            <View style={{flex:4}}>
+              <TextInput
+                  // onChangeText = {(textEntry) => {this.setState({searchText: textEntry})}}
+                  style={{backgroundColor:'transparent'}}
+                  // onSubmitEditing = {()=>{this.onSubmit(this.state.searchText)}}
+                  onFocus = {() => {console.log('onFocus')}}
+                  onBlur = {() => {console.log('onBlur')}}
+                  onChange = {() => {console.log('onChange')}}
+                  placeholder = 'I am a placeholder'
+                  onChangeText = {(text2) => {
+                    this.setState({searchText2: text2})
+                    console.log('onChangeText')}}
+                  value = {this.state.searchText2}
+
+                />
+            </View>
+            <View style={{flex:1}}>
+              <TouchableOpacity onPress={ () => this.onSubmit2(this.state.searchText2) }>
+                  <Text style={ { width: 50, height: 50 } } >Search</Text>
+              </TouchableOpacity>
+            </View>
 
 
+            <View style={{flex:1}}>
+              <TouchableOpacity onPress={ () => this.onPressDone(this.state.searchText2) }>
+                  <Text style={ { width: 50, height: 50, marginRight: 10 } } >Done</Text>
+              </TouchableOpacity>
+            </View>
+
+          </View>
           
         </View>
         <Footer />
@@ -146,5 +216,16 @@ const styles = StyleSheet.create({
   content: {
     flex: 1,
     backgroundColor: '#89b9ba'
+  },
+  textinputbox: {
+            flexDirection:'row', 
+            width: window.width, 
+            margin: 10, padding:4, 
+            alignItems:'center', 
+            justifyContent:'center', 
+            borderWidth:4, 
+            borderColor:'#888', 
+            borderRadius:10, 
+            backgroundColor:'#fff'
   }
 })

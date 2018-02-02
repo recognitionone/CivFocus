@@ -35,6 +35,7 @@ const styles = StyleSheet.create({
 	},
 	toggleIcon: {
 		fontSize: 30,
+		marginLeft: 16, 
 		color: '#CCC'
 	},
 	input: {
