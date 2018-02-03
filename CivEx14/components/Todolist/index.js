@@ -8,8 +8,8 @@ import Footer from '../Todolist/Footer'
 class Row extends Component {
   render() {
     return (
-      <View>
-        <Text>[{this.props.item.isComplete ? "Y" : "N"}]  {this.props.item.text}</Text>
+      <View style={styles.listRow}>
+        <Text style={styles.textRow}>[{this.props.item.isComplete ? "Y" : "N"}]  {this.props.item.text}</Text>
       </View>
     )
   }
@@ -25,61 +25,43 @@ export default class TodolistScreen extends Component {
 
     this.state = {
       allComplete: false,
-      items2: [],
-      searchText2: '',
-
-      dataSource: ds.cloneWithRows([ 
-        {
-          key: Date.now(),
-          text: "Tańczyć",
-          complete: false
-        }, 
-        {
-          key: Date.now(),
-          text: "Zapalać znicze",
-          complete: false
-        },
-        {
-          key: Date.now(),
-          text: "Wciągać dyyyyyyyyyym",
-          complete: false
-        }, 
-      ]) 
+      items: [],
+      searchText: '',
+      dataSource: ds.cloneWithRows([]) 
     }
-    this.onPress = this.onPress.bind(this);
-    this.onSubmit2 = this.onSubmit2.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
     this.onPressDone = this.onPressDone.bind(this);
     this.setSource = this.setSource.bind(this);
   }
 
-  setSource( items2, itemsDataSource, otherState = {} ) {
+  setSource( items, itemsDataSource, otherState = {} ) {
     this.setState({
-      items2,
+      items,
       dataSource: this.state.dataSource.cloneWithRows(itemsDataSource),
       ...otherState
     })
   }
 
-  onSubmit2(stuff) {
+  onSubmit(stuff) {
     if(!{stuff}) return;
-    const newItems2 = [
-      ...this.state.items2,
+    const newItems = [
+      ...this.state.items,
       {
         key: Date.now(),
         text: stuff,
         isComplete: false
       }
     ]
-    this.setSource(newItems2, newItems2, {searchText2: ''})
+    this.setSource(newItems, newItems, {searchText: ''})
   }
 
-  onPressDone(stuff3) {
+  onPressDone(anything) {
     const isComplete = !this.state.allComplete;
-    const newItems2 = this.state.items2.map((item) => ({
+    const newItems = this.state.items.map((item) => ({
       ...item,
       isComplete
     }))
-    this.setSource(newItems2, newItems2, { allComplete: isComplete })
+    this.setSource(newItems, newItems, { allComplete: isComplete })
   }
 
   render(){
@@ -105,20 +87,20 @@ export default class TodolistScreen extends Component {
               <TextInput
                   style={{backgroundColor:'transparent'}}
                   placeholder = 'I am a placeholder'
-                  onChangeText = {(text2) => {
-                    this.setState({searchText2: text2})
+                  onChangeText = {(text) => {
+                    this.setState({searchText: text})
                   }}
-                  value = {this.state.searchText2}
+                  value = {this.state.searchText}
                 />
             </View>
             <View style={{flex:1}}>
-              <TouchableOpacity onPress={ () => this.onSubmit2(this.state.searchText2) }>
-                  <Text style={ { width: 50, height: 50 } } >Search</Text>
+              <TouchableOpacity onPress={ () => this.onSubmit(this.state.searchText) }>
+                  <Text style={ { width: 50, height: 50 } }>Search</Text>
               </TouchableOpacity>
             </View>
             <View style={{flex:1}}>
-              <TouchableOpacity onPress={ () => this.onPressDone(this.state.searchText2) }>
-                  <Text style={{ width: 50, height: 50, marginRight: 10 }} >Done</Text>
+              <TouchableOpacity onPress={ () => this.onPressDone(this.state.searchText) }>
+                  <Text style={{ width: 50, height: 50, marginRight: 10 }}>Done</Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -163,6 +145,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between'
   },
   textRow: {
-    fontSize: 24,
+    fontSize: 14,
+    margin: 2
   }
 })
